@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>🎃 Trick-or-Treat Map · Woodside Piamonte &amp; Tramonte Families</title>
+  <meta name="description" content="Halloween trick-or-treat map for the Woodside Piamonte &amp; Tramonte Families neighborhood. Check in your house and rate the candy!">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎃</text></svg>">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="style.css?v=3">
+</head>
+<body>
+  <header>
+    <div class="title">
+      <h1>🎃 Trick-or-Treat Map</h1>
+      <div class="hood">Woodside Piamonte &amp; Tramonte Families Neighborhood</div>
+    </div>
+    <div id="stats">Loading…</div>
+    <button id="btn-mine" hidden>🏠 My house</button>
+    <button id="btn-board">🏆 Leaderboard</button>
+    <button id="btn-admin" hidden>🛠 Organizer</button>
+    <button id="btn-locate" title="Show my location">📍</button>
+  </header>
+
+  <div id="map"></div>
+  <div id="banner" hidden></div>
+  <div id="alert" hidden></div>
+
+  <div id="legend">
+    <div><span class="sw" style="background:#ff7518"></span>Handing out candy</div>
+    <div><span class="sw" style="background:#3a3150"></span>Sitting out</div>
+    <div><span class="sw" style="background:#5b5b6b"></span>No answer yet</div>
+    <div><span class="sw" style="background:transparent;border:2px solid #fff"></span>Your house</div>
+    <div class="fine">Tap your house to check in.<br>Tap a 🎃 to see it and rate it.</div>
+  </div>
+
+  <aside id="sheet" class="panel" hidden></aside>
+  <aside id="board" class="panel" hidden></aside>
+  <aside id="admin" class="panel" hidden></aside>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script type="module" src="app.js?v=3"></script>
+</body>
+</html>
