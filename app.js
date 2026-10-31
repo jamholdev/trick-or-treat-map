@@ -112,13 +112,14 @@ function localStore() {
 const map = L.map('map', { zoomControl: false, minZoom: 15, maxZoom: 20, maxBounds: BOUNDS.pad(1) });
 map.fitBounds(BOUNDS);
 L.control.zoom({ position: 'bottomright' }).addTo(map);
-map.attributionControl.addAttribution('Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors');
+map.attributionControl.addAttribution('Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, addresses &copy; Placer County');
 // Streets and their names are drawn from streets.json (no tile server or API key needed).
 map.createPane('streets').style.zIndex = 350;                  // below house outlines
 const labelPane = map.createPane('labels');
 labelPane.style.zIndex = 450; labelPane.style.pointerEvents = 'none'; // above outlines, below pins
 const markers = L.layerGroup().addTo(map);
 const streetLabels = L.layerGroup();
+const houseNums = L.layerGroup();
 
 const STREET_STYLE = {
   primary: [12, '#4d4270'], secondary: [11, '#4d4270'], tertiary: [10, '#463c66'],
@@ -180,7 +181,17 @@ async function loadFootprints() {
     const fp = { id: b.id, a: b.a, lat: c.lat, lng: c.lng, poly };
     poly.on('click', e => { L.DomEvent.stopPropagation(e); openHouse(fp); });
     footprints[b.id] = fp;
+    if (b.n) {
+      houseNums.addLayer(L.marker(c, {
+        pane: 'labels', interactive: false, keyboard: false,
+        icon: L.divIcon({ className: '', iconSize: [0, 0], html: `<div class="hnum">${esc(b.n)}</div>` }),
+      }));
+    }
   }
+  // House numbers (from Placer County address points) appear once there is room to read them.
+  const toggleNums = () => map.getZoom() >= 18 ? houseNums.addTo(map) : houseNums.remove();
+  map.on('zoomend', toggleNums);
+  toggleNums();
 }
 
 // Only real house outlines can be checked in; tapping empty ground just closes any open panel.

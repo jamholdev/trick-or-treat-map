@@ -5,6 +5,7 @@ A neighborhood map where people tap their house to say whether they're handing o
 - Hosting: GitHub Pages (free)
 - Shared data: Firebase Realtime Database, Spark plan (free, no credit card)
 - Map: streets (`streets.json`) and house outlines (`buildings.json`) from OpenStreetMap, drawn by the app itself, so no tile server or API key is needed
+- House numbers: Placer County address points, matched to each outline and saved in `buildings.json`
 
 ## Try it locally (demo mode)
 

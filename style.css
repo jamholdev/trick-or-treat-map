@@ -15,6 +15,8 @@ header button { padding: .45rem .7rem; border-radius: 99px; border: 1px solid va
 #map { position: absolute; inset: 0; background: #17111f; }
 .street { width: max-content; font-size: 12px; font-weight: 600; letter-spacing: .03em; color: #e6dcff;
   text-shadow: 0 0 3px #000, 0 0 3px #000, 0 0 6px #000; white-space: nowrap; user-select: none; }
+.hnum { transform: translate(-50%, 11px); width: max-content; font-size: 10px; font-weight: 700; color: #fff;
+  text-shadow: 0 0 2px #000, 0 0 3px #000; white-space: nowrap; user-select: none; }
 .leaflet-popup-content-wrapper, .leaflet-popup-tip { background: var(--panel); color: var(--text); }
 
 #banner { position: fixed; top: 4.6rem; left: 50%; transform: translateX(-50%); z-index: 1000;
